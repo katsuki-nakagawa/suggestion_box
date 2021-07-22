@@ -1,4 +1,4 @@
-# vue_lesson
+# suggestion_box
 
 ## Project setup
 ```
