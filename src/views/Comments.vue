@@ -28,9 +28,19 @@ export default {
       posts: []
     };
   },
+  computed: {
+    idToken () {
+      return this.$store.getters.idToken
+    }
+  },
   created () {
     axios.get(
-      '/comments'
+      '/comments',
+      {
+        headers: {
+          Authorization: `Bearer ${ this.idToken }`
+        }
+      }
     ).then(response => {
       this.posts = response.data.documents
       console.dir(response)
@@ -44,6 +54,11 @@ export default {
           fields: {
             name: {stringValue: this.name},
             comment: {stringValue: this.comment}
+          }
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${ this.idToken }`
           }
         }
       ).then (response => {
