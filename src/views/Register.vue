@@ -23,7 +23,7 @@ export default {
     }
   },
   methods: {
-      register () {
+    register () {
         axios.post(
             '/accounts:signUp?key=AIzaSyC9xpsrA7B92sXf0ovzU7gSfk52YMIuL9U',
             {
@@ -36,7 +36,9 @@ export default {
         }).catch(error => {
             console.log(error.response.data.error)
         })
-      }
+    this.email = ""
+    this.password = ""
+    }
   }
 }
 </script>
