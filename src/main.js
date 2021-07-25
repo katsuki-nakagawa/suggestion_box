@@ -8,6 +8,7 @@ Vue.config.productionTip = false
 
 axios.defaults.baseURL = "https://firestore.googleapis.com/v1/projects/suggestion-box-dc26e/databases/(default)/documents"
 
+store.dispatch('autoLogin')
 new Vue({
   router,
   store,
