@@ -8,9 +8,31 @@ Vue.config.productionTip = false
 
 axios.defaults.baseURL = "https://firestore.googleapis.com/v1/projects/suggestion-box-dc26e/databases/(default)/documents"
 
-store.dispatch('autoLogin')
-new Vue({
-  router,
-  store,
-  render: h => h(App),
-}).$mount('#app')
+const interceptorsRequest = axios.interceptors.request.use(
+  config => {
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+)
+
+const interceptorsResponse = axios.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+)
+
+axios.interceptors.request.eject(interceptorsRequest);
+axios.interceptors.response.eject(interceptorsResponse);
+
+store.dispatch('autoLogin').then(() => {
+  new Vue({
+    router,
+    store,
+    render: h => h(App)
+  }).$mount('#app');
+});
