@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from '../axios-auth'
+import router from '../router'
 
 Vue.use(Vuex);
 
@@ -27,7 +28,7 @@ export default new Vuex.Store({
                 }
             ).then(response => {
                 commit('updateIdToken', response.data.idToken)
-                console.log(response)
+                router.push('/')
             }).catch(error => {
                 console.log(error.response.data.error)
             })
@@ -42,7 +43,7 @@ export default new Vuex.Store({
                 }
             ).then(response => {
                 commit('updateIdToken', response.data.idToken)
-                console.log(response)
+                router.push('/')
             }).catch(error => {
                 console.log(error.response.data.error)
             })
